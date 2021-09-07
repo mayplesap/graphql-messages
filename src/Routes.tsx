@@ -9,6 +9,9 @@ import {User, Message} from "./interfaces";
 interface Props {
   users: User[];
   messages: Message[];
+  createUser: (username: string, firstName: string, lastName:string) => void;
+  createMessage: (username: string, message: string) => void;
+
 }
 
 function Routes(props: Props): React.ReactElement{
@@ -28,11 +31,11 @@ function Routes(props: Props): React.ReactElement{
         </Route>
         
         <Route exact path="/add-user">
-          <NewUserForm createUser={(username, firstName, lastName) => null}/>
+          <NewUserForm createUser={props.createUser}/>
         </Route>
 
         <Route exact path="/add-message">
-          <NewMessageForm createMessage={(username, message) => null}/>
+          <NewMessageForm createMessage={props.createMessage}/>
         </Route>
 
         <Redirect to="/" />
