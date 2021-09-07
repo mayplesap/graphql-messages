@@ -5,17 +5,17 @@ interface MessageFormProps {
   createMessage: (username: string, message:string) => void 
 }
 
-function NewMessageForm(props: MessageFormProps) {
+function NewMessageForm(props: MessageFormProps): React.ReactElement {
   const history = useHistory();
   const [formData, setFormData] = useState({ username: "", message:""})
 
-  function handleSubmit(evt: React.FormEvent) {
+  function handleSubmit(evt: React.FormEvent): void {
     evt.preventDefault();
     props.createMessage(formData.username, formData.message);
     history.push("/");
   }
 
-  function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(evt: React.ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
     setFormData(data => ({
       ...data,
