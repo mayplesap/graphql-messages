@@ -12,11 +12,20 @@ function App(): React.ReactElement {
   const [message, setMessage] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  async function createUser() {
-  
+  async function createUser(username: string, firstName: string, lastName: string) {
+    setIsLoading(true);
+    await UserMessagesApi.createUser(username, firstName, lastName);
+    console.log("after createUser ")
+    await getAllUserMessages();
+    console.log("after get all messages again");
   }
 
-  async function createMessage() {}
+  async function createMessage(username: string, message: string) {
+    setIsLoading(true);
+    await UserMessagesApi.createMessage(username, message);
+    await getAllUserMessages();
+
+  }
 
   async function getAllUserMessages() {
     setIsLoading(true);
@@ -38,7 +47,11 @@ function App(): React.ReactElement {
     <div className="App">
       <BrowserRouter>
         <Nav />
-        <Routes users={users} messages={messages}/>
+        <Routes 
+          users={users} 
+          messages={messages} 
+          createUser={createUser} 
+          createMessage={createMessage}/>
       </BrowserRouter>
     </div>
   );
