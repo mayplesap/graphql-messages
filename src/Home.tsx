@@ -1,4 +1,5 @@
-import Container from "./Container"
+import UserCard from "./UserCard";
+import MessageCard from "./MessageCard";
 import {User, Message} from "./interfaces";
 
 interface UserMessage {
@@ -6,15 +7,19 @@ interface UserMessage {
   messages: Message[];
 }
 
-function Home(props: UserMessage){
+function Home(props: UserMessage): React.ReactElement{
   return (
     <div className="container">
       <div className="row">
         <div className="col-6">
-          <Container users={props.users} />
+          {props.users.map(u => (
+            <UserCard user={u} key={u.username}/>
+          ))}
         </div>
         <div className="col-6">
-          <Container messages={props.messages} />
+          {props.messages.map(m => (
+            <MessageCard message={m} key={m.id}/>
+          ))}
         </div>
       </div>
     </div>
