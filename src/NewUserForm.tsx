@@ -1,11 +1,25 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
 
-function NewUserForm(props: { createUser: (username: string, firstName: string, lastName: string) => void }) {
-  const [formData, setFormData] = useState({ username: "", firstName: "", lastName: "" })
+interface UserFormInterface {
+  createUser: (
+    username: string, 
+    firstName: string, 
+    lastName: string) => void
+}
+
+function NewUserForm(props: UserFormInterface) {
+  const history = useHistory();
+  const [formData, setFormData] = useState({
+    username: "",
+    firstName: "",
+    lastName: "" 
+  })
 
   function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     props.createUser(formData.username, formData.firstName, formData.lastName);
+    history.push("/");
   }
 
   function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
