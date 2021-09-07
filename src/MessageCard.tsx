@@ -1,4 +1,4 @@
-import {Message} from "./interfaces";
+import { Message } from "./interfaces";
 
 interface MessageProps {
   message: Message;
@@ -10,9 +10,9 @@ function MessageCard(props: MessageProps): React.ReactElement {
       <div className="card-body">
         <p className="card-text">Message: {props.message.body}</p>
         <p className="card-text">User: {props.message.user.username}</p>
-        </div>
+      </div>
     </div>
   )
-  }
-  
-  export default MessageCard;
+}
+
+export default MessageCard;
