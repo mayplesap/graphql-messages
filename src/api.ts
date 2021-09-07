@@ -10,13 +10,20 @@ const BASE_URL = "https://users-messages-gql.herokuapp.com/graphql"
  *
  */
 class UserMessagesApi {
-  static async getUsers(){
+  static async getAllUserMessages(){
     let query = `
       query {
         users {
           username
           first_name
           last_name
+        }
+        messages {
+          id
+          body
+          user {
+            username
+          }
         }
       }
     `;
@@ -39,21 +46,21 @@ class UserMessagesApi {
     return res.data.data;
   }
 
-  static async getMessages(){
-    let query = `
-      query {
-        messages {
-          id
-          body
-          user {
-            username
-          }
-        }
-      }
-    `;
-    let res = await axios.get(`${BASE_URL}?query=${query}`);
-    return res.data.data;
-  }
+  // static async getMessages(){
+  //   let query = `
+  //     query {
+  //       messages {
+  //         id
+  //         body
+  //         user {
+  //           username
+  //         }
+  //       }
+  //     }
+  //   `;
+  //   let res = await axios.get(`${BASE_URL}?query=${query}`);
+  //   return res.data.data;
+  // }
 
   static async getMessage(searchId: number) {
     let query = `
