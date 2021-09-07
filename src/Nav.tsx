@@ -10,12 +10,17 @@ function Nav(): React.ReactElement {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid p-0">
       <NavLink className="navbar-brand" exact to="/">
-        Pixly
+        User Messages
       </NavLink>
       <ul className="nav navabar-nav">
         <li>
-          <NavLink className="nav-item nav-link" to="/add-image">
-            Add Image
+          <NavLink className="btn btn-secondary" to="/add-user">
+            Add User
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="btn btn-secondary" to="/add-message">
+            Add Message
           </NavLink>
         </li>
       </ul>
