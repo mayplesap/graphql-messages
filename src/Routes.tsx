@@ -4,13 +4,19 @@ import Users from "./Users";
 import Messages from "./Messages";
 import NewUserForm from "./NewUserForm";
 import NewMessageForm from "./NewMessageForm";
+import {User, Message} from "./interfaces";
 
-function Routes(): React.ReactElement{
+interface Props {
+  users: User[];
+  messages: Message[];
+}
+
+function Routes(props: Props): React.ReactElement{
   return (
     <div className="Routes">
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home users={props.users} messages={props.messages}/>
         </Route>
 
         <Route exact path="/users">
