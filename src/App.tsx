@@ -8,23 +8,18 @@ import Nav from "./Nav";
 function App(): React.ReactElement {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [user, setUser] = useState({});
-  const [message, setMessage] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   async function createUser(username: string, firstName: string, lastName: string) {
     setIsLoading(true);
     await UserMessagesApi.createUser(username, firstName, lastName);
-    console.log("after createUser ")
     await getAllUserMessages();
-    console.log("after get all messages again");
   }
 
   async function createMessage(username: string, message: string) {
     setIsLoading(true);
     await UserMessagesApi.createMessage(username, message);
     await getAllUserMessages();
-
   }
 
   async function getAllUserMessages() {
