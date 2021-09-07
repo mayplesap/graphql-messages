@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function NewUserForm(props: { createUser: (username: string, firstName: string, lastName: string) => void }) {
-
   const [formData, setFormData] = useState({ username: "", firstName: "", lastName: "" })
 
   function handleSubmit(evt: React.FormEvent) {
@@ -18,39 +17,38 @@ function NewUserForm(props: { createUser: (username: string, firstName: string, 
   }
   return (
     <form onSubmit={handleSubmit}
-      className="UserForm form-group container mt-3">
-      <div className="row">
-        <div className="col-10">
+      className="UserForm form-group container mt-3 w-50">
+        <div className="form-group">
+          <label>Username</label>
           <input
             name="username"
             onChange={handleChange}
-            placeholder="Input search term"
+            placeholder="Username"
             className="form-control"
             required
           />
         </div>
-        <div className="col-10">
+        <div className="form-group">
+          <label>First Name</label>
           <input
             name="firstName"
             onChange={handleChange}
-            placeholder="Input search term"
+            placeholder="First name"
             className="form-control"
             required
           />
         </div>
-        <div className="col-10">
+        <div className="form-group">
+          <label>Last Name</label>
           <input
             name="lastName"
             onChange={handleChange}
-            placeholder="Input search term"
+            placeholder="Last name"
             className="form-control"
             required
           />
         </div>
-        <div className="col-2">
-          <button type="submit" className="btn btn-info">Search</button>
-        </div>
-      </div>
+          <button type="submit" className="btn btn-info mt-2">Create User</button>
     </form>
   )
 }
