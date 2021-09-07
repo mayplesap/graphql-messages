@@ -17,13 +17,6 @@ class UserMessagesApi {
           username
           first_name
           last_name
-          messages{
-            id
-            body,
-            user{
-              username
-            }
-          }
         }
         messages {
           id
@@ -45,6 +38,13 @@ class UserMessagesApi {
           username
           first_name
           last_name
+          messages {
+            id
+            body,
+            user {
+              username
+            }
+          }
         }
       }
     `;
