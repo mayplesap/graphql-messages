@@ -19,8 +19,12 @@ class UserMessagesApi {
           last_name
         }
       }
-    `
+    `;
+    let res = await axios.get(`${BASE_URL}?query=${query}`);
+    console.log(res.data.data);
+    return res.data.data;
   }
+
   static async getUser(searchTerm: string) {
     let query = `
       query {
@@ -30,7 +34,9 @@ class UserMessagesApi {
           last_name
         }
       }
-    `
+    `;
+    let res = await axios.get(`${BASE_URL}?query=${query}`);
+    return res.data.data;
   }
 
   static async getMessages(){
@@ -44,29 +50,60 @@ class UserMessagesApi {
           }
         }
       }
-    `
+    `;
+    let res = await axios.get(`${BASE_URL}?query=${query}`);
+    return res.data.data;
   }
 
   static async getMessage(searchId: number) {
     let query = `
-    query {
-      message(id:"${searchId}"){
-        id
-        body
-        user {
-          username
+      query {
+        message(id:"${searchId}"){
+          id
+          body
+          user {
+            username
+          }
         }
       }
-    }
-  `
+    `;
+    let res = await axios.get(`${BASE_URL}?query=${query}`);
+    return res.data.data;
   }
 
-  static async createUser() {
+  static async createUser(username: string, firstName: string, lastName: string) {
+    let mutation = `
+      mutation {  
+        createUser(username:"${username}", 
+                  first_name:"${firstName}", 
+                  last_name:"${lastName}") {    
+          username    
+          first_name    
+          last_name  
+        }
+      }
+    `;
+    let res = await axios.post(BASE_URL, mutation);
+    return res.data.data;
 
   }
 
-  static async createMessage() {
-
+  static async createMessage(username:string, message:string) {
+    let mutation = `
+      mutation {  
+        createMessage(
+                    username:"${username}",
+                    body:"${message}") {    
+          id
+          body
+          user{
+            username
+          }
+        }
+      }
+    `;
+    let res = await axios.post(BASE_URL, mutation);
+    return res.data.data;
   }
 }
 
