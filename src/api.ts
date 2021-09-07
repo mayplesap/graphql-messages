@@ -90,6 +90,7 @@ class UserMessagesApi {
         }
       }
     `;
+    console.log("inside api creating user")
     let res = await axios.post(BASE_URL, mutation);
     return res.data.data;
 
