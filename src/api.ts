@@ -9,7 +9,7 @@ const BASE_URL = "https://users-messages-gql.herokuapp.com/graphql"
  * be any API-aware stuff elsewhere in the frontend.
  *
  */
-class MessagesApi {
+class UserMessagesApi {
   static async getUsers(){
     let query = `
       query {
@@ -69,3 +69,5 @@ class MessagesApi {
 
   }
 }
+
+export default UserMessagesApi;
