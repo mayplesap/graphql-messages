@@ -10,19 +10,19 @@ function App(): React.ReactElement {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  async function createUser(username: string, firstName: string, lastName: string) {
+  async function createUser(username: string, firstName: string, lastName: string): Promise<void> {
     setIsLoading(true);
     await UserMessagesApi.createUser(username, firstName, lastName);
     await getAllUserMessages();
   }
 
-  async function createMessage(username: string, message: string) {
+  async function createMessage(username: string, message: string): Promise<void> {
     setIsLoading(true);
     await UserMessagesApi.createMessage(username, message);
     await getAllUserMessages();
   }
 
-  async function getAllUserMessages() {
+  async function getAllUserMessages(): Promise<void> {
     setIsLoading(true);
     let resultFromAPI = await UserMessagesApi.getAllUserMessages();
     setUsers(resultFromAPI.users);
