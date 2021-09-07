@@ -9,7 +9,7 @@ interface UserMessage {
 
 function Home(props: UserMessage): React.ReactElement{
   return (
-    <div className="container">
+    <div className="container mt-2">
       <div className="row">
         <div className="col-6">
           {props.users.map(u => (
