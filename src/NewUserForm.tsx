@@ -8,7 +8,7 @@ interface UserFormInterface {
     lastName: string) => void
 }
 
-function NewUserForm(props: UserFormInterface) {
+function NewUserForm(props: UserFormInterface): React.ReactElement {
   const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
@@ -16,13 +16,13 @@ function NewUserForm(props: UserFormInterface) {
     lastName: "" 
   })
 
-  function handleSubmit(evt: React.FormEvent) {
+  function handleSubmit(evt: React.FormEvent): void {
     evt.preventDefault();
     props.createUser(formData.username, formData.firstName, formData.lastName);
     history.push("/");
   }
 
-  function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(evt: React.ChangeEvent<HTMLInputElement>): void {
     const { name, value } = evt.target;
     setFormData(data => ({
       ...data,
