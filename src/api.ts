@@ -17,6 +17,13 @@ class UserMessagesApi {
           username
           first_name
           last_name
+          messages{
+            id
+            body,
+            user{
+              username
+            }
+          }
         }
         messages {
           id
@@ -28,7 +35,6 @@ class UserMessagesApi {
       }
     `;
     let res = await axios.get(`${BASE_URL}?query=${query}`);
-    console.log(res.data.data);
     return res.data.data;
   }
 
@@ -46,21 +52,6 @@ class UserMessagesApi {
     return res.data.data;
   }
 
-  // static async getMessages(){
-  //   let query = `
-  //     query {
-  //       messages {
-  //         id
-  //         body
-  //         user {
-  //           username
-  //         }
-  //       }
-  //     }
-  //   `;
-  //   let res = await axios.get(`${BASE_URL}?query=${query}`);
-  //   return res.data.data;
-  // }
 
   static async getMessage(searchId: number) {
     let query = `
@@ -90,8 +81,7 @@ class UserMessagesApi {
         }
       }
     `;
-    console.log("inside api creating user")
-    let res = await axios.post(BASE_URL, mutation);
+    let res = await axios.post(BASE_URL, {query: mutation});
     return res.data.data;
 
   }
@@ -110,7 +100,7 @@ class UserMessagesApi {
         }
       }
     `;
-    let res = await axios.post(BASE_URL, mutation);
+    let res = await axios.post(BASE_URL, {query: mutation});
     return res.data.data;
   }
 }
